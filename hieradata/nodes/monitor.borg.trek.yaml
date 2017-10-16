@@ -1,6 +1,4 @@
----
-message: "This node is using common data"
-profile::sensu::sensu_key: |
+profile::sensu::rabbitmq_key: |
   -----BEGIN RSA PRIVATE KEY-----
   MIIEpAIBAAKCAQEAvNLwyCpZo5iLcBN27/SwVGtRqK02yBuGuws05rRqfuU7vf80
   I00n+bE6iCUCvVAjWLdZDBZWkxaH9p4/z7I9rIz6V1peBg4WNP/3YgUfLY2BHATC
