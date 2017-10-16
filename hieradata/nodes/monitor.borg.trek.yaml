@@ -1,3 +1,16 @@
+---
+profile::sensu::api_password: vzlU5TdagpA4yXJc
+profile::sensu::rabbitmq_monitoring_password: kavn72f2o1CZkEA9
+profile::sensu::community_plugins:
+  sensu-plugins-rabbitmq: latest
+  sensu-plugins-redis: latest
+sensu::checks:
+  'rabbitmq-alive':
+    command: 'check-rabbitmq-alive.rb -u monitoring -p kavn72f2o1CZkEA9'
+  'rabbitmq-node-health':
+    command: 'check-rabbitmq-node-health.rb -u monitoring -p kavn72f2o1CZkEA9 -m :::rabbitmq.memwarn|80::: -c :::rabbitmq.memcrit|90::: -f :::rabbitmq.fdwarn|80::: -F :::rabbitmq.fdcrit|90::: -s :::rabbitmq.socketwarn|80::: -S :::rabbitmq.socketcrit|90:::'
+  'rabbitmq-queue-drain-time':
+    command: 'check-rabbitmq-queue-drain-time.rb --user monitoring --password kavn72f2o1CZkEA9 -w :::rabbitmq.queuewarn|180::: -c :::rabbitmq.queuecrit|360:::'
 profile::sensu::rabbitmq_key: |
   -----BEGIN RSA PRIVATE KEY-----
   MIIEpAIBAAKCAQEAvNLwyCpZo5iLcBN27/SwVGtRqK02yBuGuws05rRqfuU7vf80

@@ -26,7 +26,13 @@ File { backup => false }
 # specified in the console for that node.
 
 node default {
-  # This is where you can declare classes for all nodes.
-  # Example:
-  #   class { 'my_class': }
+  include ::profile::base_linux
+}
+
+node 'manager.borg.trek' {
+  include ::role::manager
+}
+
+node 'monitor.borg.trek' {
+  include ::role::monitor
 }

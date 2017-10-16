@@ -1,5 +1,48 @@
 ---
 message: "This node is using common data"
+base_windows::win_sw_pkg:
+  - 'git'
+base_linux::linux_sw_pkg:
+  - 'htop'
+  - 'sysstat'
+  - 'vim'
+base_linux::root_ssh_key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDjS+4jaGA9E8SHT5Tf9lLpIshX/Ynt4wzXIrCW3ZwZo2BffvFi9LhN0MCvmdnY9ayqPWZ+IByhvhwdV9F6AK1ZPSSp6y15dYoap6fWVb8vf+pDNjjAs2IbFVh4ypuUNI6vfS2lBA//IEthawLlr7kACsAH9fjWF1/FkaKSAz8+RpmFx2vjT/ai/VQ8apDtH26KkbcAy0zyZbS/7DB7bw3FVUYzcR12jtkHmnO6BEuIVmaBVMpJLPsxX+nx7NpP14WA65iuYG2OwA7GrCXkawjN7lbOLwsEDJm1+9tPR0aruiZM5COCJtBg+3LCq2XMwmc/jEfEoAZvG2A2dtJC64OP'
+lookup_options:
+  sensu::checks:
+    merge: hash
+profile::sensu::rabbitmq_password: n1Zz62jXSQ8rxGdX
+#Communityplugins: name => version
+profile::sensu::community_plugins:
+  sensu-plugins-disk-checks: latest 
+  sensu-plugins-process-checks: latest
+  sensu-plugins-memory-checks: latest
+  sensu-plugins-cpu-checks: latest
+  sensu-plugins-network-checks: latest
+  sensu-plugins-load-checks: latest
+  sensu-plugins-io-checks: latest
+  sensu-plugins-ntp: latest
+
+sensu::checks:
+  'diskspace':
+    command: 'check-disk-usage.rb -w :::disk.warning|80::: -c :::disk.critical|90::: -I :::disk.mountpoints|all:::'
+  'metric_memory':
+    command: 'metrics-memory.rb'
+    type: 'metric'
+    interval: 10
+    handlers: 
+      - handler_graphite
+  'metric_net':
+    command: 'metrics-net.rb'
+    interval: 10
+    type: 'metric'
+    handlers:
+      - handler_graphite
+  'metric_load':
+    command: 'metrics-load.rb'
+    interval: 10
+    type: 'metric'
+    handlers:
+      - handler_graphite
 profile::sensu::sensu_key: |
   -----BEGIN RSA PRIVATE KEY-----
   MIIEpAIBAAKCAQEAvNLwyCpZo5iLcBN27/SwVGtRqK02yBuGuws05rRqfuU7vf80

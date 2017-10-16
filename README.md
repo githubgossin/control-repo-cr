@@ -4,7 +4,7 @@ Control Repo for Simple Cyber Range
   * [Pre-deploy steps](#pre-deploy-steps)
   * [Deploy](#deploy)
 
-# Pre-deply steps
+# Pre-deploy steps
 
 Create certificates with the [Sensu SSL tool](https://sensuapp.org/docs/latest/reference/ssl.html)
 ```
@@ -25,6 +25,12 @@ cat server/key.pem | sed -e 's/^/  /' >> ~/gits/control-repo-cr/hieradata/common
 # delete old entries:
 vi ~/gits/control-repo-cr/hieradata/nodes/monitor.borg.trek.yaml
 vi ~/gits/control-repo-cr/hieradata/common.yaml
+
+# replace profile::sensu::rabbitmq_password in common.yaml (and replace root ssh key)
+
+# replace profile::sensu::api_password in monitor.borg.trek.yaml 
+# and profile::sensu::rabbitmq_monitoring_password (in all checks as well)
+
 ```
 
 
