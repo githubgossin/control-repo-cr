@@ -41,7 +41,7 @@ class profile::graphite::grafana {
 
   class { 'grafana':
     cfg     => $config,
-    version => '4.2.0',
+#    version => '4.2.0',
     require => Mysql::Db[$db_name],
   }
 
