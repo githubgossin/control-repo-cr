@@ -40,3 +40,7 @@ node 'monitor.borg.trek' {
 node 'trends.borg.trek' {
   include ::role::trends
 }
+
+node 'grafana.borg.trek' {
+  include ::role::grafana
+}
