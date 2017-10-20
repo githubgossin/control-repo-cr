@@ -70,7 +70,7 @@ mod 'stahnma/epel', '1.2.2'
 # Metrics - graphite/grafana
 mod 'puppetlabs-mysql', '5.1.0'
 mod 'dwerder/graphite', '7.0.0'
-mod 'puppet/grafana', '3.0.0'
+mod 'puppet/grafana', '4.0.2'
 #mod 'garethr-docker', '5.3.0'
 mod 'puppetlabs-docker', '1.0.0'
 
