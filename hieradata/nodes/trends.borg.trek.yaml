@@ -1,4 +1,4 @@
 ---
 profile::graphite::mysql_root_password: 97qmsOBJ7xFd7uoY
 profile::graphite::mysql_graphite_password: G7IhE4NziWlfQQPb
-profile::graphite::graphite_secret_key:	4ReXACQZu6ybHzax
+profile::graphite::graphite_secret_key: 4ReXACQZu6ybHzax
