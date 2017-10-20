@@ -50,7 +50,7 @@ class profile::graphite::grafana {
     grafana_user     => 'admin',
     grafana_password => $admin_password,
     type             => 'graphite',
-    url              => $graphite_server_fqdn,
+    url              => "http://$graphite_server_fqdn",
     access_mode      => 'proxy',
     is_default       => true,
     require          => Class['grafana'],
