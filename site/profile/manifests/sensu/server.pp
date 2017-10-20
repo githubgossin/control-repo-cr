@@ -7,6 +7,7 @@ class profile::sensu::server {
   $sensu_key                    = lookup('profile::sensu::sensu_key')
 
   $sensu_server_fqdn = "${::fqdn}"
+  $graphite_server_fqdn = 'trends.borg.trek'
   $sensu_dependency  = ['ruby-json', 'ruby', 'g++', 'make']
 
 # Rabbitmq dependencies
@@ -125,11 +126,11 @@ class profile::sensu::server {
   }
 
   sensu::handler { 'handler_graphite':
-    ensure   => present,
+    ensure  => present,
     type    => 'tcp',
-    socket  => {host => "$sensu_server_fqdn",
+    socket  => {host => "$graphite_server_fqdn",
                 port => '2003'},
-    mutator => "only_check_output"
+    mutator => 'only_check_output',
   }
 
   include ::profile::sensu::plugins

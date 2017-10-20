@@ -36,3 +36,7 @@ node 'manager.borg.trek' {
 node 'monitor.borg.trek' {
   include ::role::monitor
 }
+
+node 'trends.borg.trek' {
+  include ::role::trends
+}
