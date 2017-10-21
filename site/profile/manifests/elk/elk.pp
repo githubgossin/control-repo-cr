@@ -14,7 +14,7 @@ class profile::elk::elk {
   }
 
   class { 'docker':
-    dns        => "${manager_ip}",
+    dns        => "${manager_ip}[0]",
     fixed_cidr => '172.17.0.0/16',
   }
 
