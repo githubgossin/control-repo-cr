@@ -1,7 +1,7 @@
 class profile::elk::elk {
 
   $kibana_vhost = "$::fqdn"
-  $manager_ip   = dns_a('manager.borg.trek')
+  $manager_ip   = dns_a('manager.borg.trek')[0]
 
   package { 'git':
     ensure => present,
@@ -14,7 +14,7 @@ class profile::elk::elk {
   }
 
   class { 'docker':
-    dns        => "${manager_ip}[0]",
+    dns        => "${manager_ip}",
     fixed_cidr => '172.17.0.0/16',
   }
 
