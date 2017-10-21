@@ -40,7 +40,7 @@ class profile::base_linux {
   }
 
 # on all Ubuntu's with two network interfaces, fix routing
-  unless $::hostname =~ /(manager|monitor|logs|trends)/ {
+  unless $::hostname =~ /(manager|monitor|logs|trends|grafana)/ {
     network::routing_table { 'table-ens4':
       table_id => 100,
     }

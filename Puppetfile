@@ -6,6 +6,7 @@ mod 'puppetlabs/stdlib', '4.17.1'
 mod 'puppetlabs/firewall', '1.9.0'
 mod 'lwf/remote_file', '1.1.3'
 mod 'stm/debconf', '2.0.0'
+mod 'dalen-dnsquery', '3.0.0'
 
 mod 'puppetlabs/ntp', '6.2.0'
 
