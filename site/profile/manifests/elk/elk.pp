@@ -1,6 +1,6 @@
 class profile::elk::elk {
 
-  $kibana_vhost = "$::fqdn"
+  $kibana_vhost = "$::public-ipv4"
   $manager_ip   = dns_a('manager.borg.trek')[0]
 
   package { 'git':
