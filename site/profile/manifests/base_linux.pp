@@ -62,5 +62,5 @@ class profile::base_linux {
   }
 
   include ::profile::dns::client
-
+  include ::profile::elk::filebeat
 }

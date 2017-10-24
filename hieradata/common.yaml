@@ -1,5 +1,6 @@
 ---
 message: "This node is using common data"
+profile::elk::logstash_server: logs.borg.trek
 base_windows::win_sw_pkg:
   - 'git'
 base_linux::linux_sw_pkg:
