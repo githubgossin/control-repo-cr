@@ -5,7 +5,7 @@ class profile::elk::filebeat {
   class { 'filebeat':
     outputs => {
       'logstash' => {
-        'hosts'  => [ "${logstash_server}:5000" ],
+        'hosts'  => [ "${logstash_server}:5044" ],
       },
     },
     manage_repo => true,
