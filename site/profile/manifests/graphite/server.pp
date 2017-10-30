@@ -1,8 +1,8 @@
 class profile::graphite::server {
 
-  $mysql_root_password     = lookup('profile::graphite::mysql_root_password')
-  $mysql_graphite_password = lookup('profile::graphite::mysql_graphite_password')
-  $graphite_secret_key     = lookup('profile::graphite::graphite_secret_key')
+  $mysql_root_password      = lookup('profile::graphite::mysql_root_password')
+  $mysql_graphite_password  = lookup('profile::graphite::mysql_graphite_password')
+  $graphite_secret_password = lookup('profile::graphite::graphite_secret_password')
 
   class { '::mysql::server':
     root_password           => $mysql_root_password,
@@ -30,7 +30,7 @@ class profile::graphite::server {
     ],
     gr_max_updates_per_second => 100,
     gr_timezone               => 'Europe/Oslo',
-    secret_key                => $graphite_secret_key,
+    secret_key                => $graphite_secret_password,
     gr_web_server             => 'nginx',
     gr_django_db_engine       => 'django.db.backends.mysql',
     gr_django_db_name         => 'graphite',

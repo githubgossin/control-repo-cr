@@ -1,4 +1,4 @@
 ---
-profile::graphite::grafana::db_password: xtx7SyRj9EJo1Dq3
-profile::graphite::grafana::db_root_password: FyEMszxxWQ0f3D2y
-profile::graphite::grafana::admin_password: H0vuVcjtYTzf70jy
+profile::graphite::grafana::db_password:
+profile::graphite::grafana::db_root_password:
+profile::graphite::grafana::admin_password:

@@ -11,7 +11,7 @@ base_linux::root_ssh_key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDjS+4jaGA9E8SHT5Tf9lLpI
 lookup_options:
   sensu::checks:
     merge: hash
-profile::sensu::rabbitmq_password: n1Zz62jXSQ8rxGdX
+profile::sensu::rabbitmq_password:
 #Communityplugins: name => version
 profile::sensu::community_plugins:
   sensu-plugins-disk-checks: latest 
@@ -44,31 +44,3 @@ sensu::checks:
     type: 'metric'
     handlers:
       - handler_graphite
-profile::sensu::sensu_key: |
-  -----BEGIN RSA PRIVATE KEY-----
-  MIIEpAIBAAKCAQEAvNLwyCpZo5iLcBN27/SwVGtRqK02yBuGuws05rRqfuU7vf80
-  I00n+bE6iCUCvVAjWLdZDBZWkxaH9p4/z7I9rIz6V1peBg4WNP/3YgUfLY2BHATC
-  hXftnUk0DFPqhGPTY7kTQwVCtv893eGPGTbxgYvKskIRAgeqBIzwf0Kw2k96c30p
-  RluqKyWn8DJnzsIXktv+HmUlHSz/EpMTH7e2U8IofhbzXeRN2Nm4S+T61Ox2HIbr
-  y7Q935vbXsGHjMyoO1rDobGP3efM4giB7wevgvcykKcXwIcYaMPdyXwiWnjWdGJf
-  RkVuFmKtNJbLtktf3jxzZIAQmSTd0MJjaxtHxQIDAQABAoIBADwfIgFp0p7PXF50
-  JCOlElvey+JcPJwcf5qgp9hpS5tZ29rUHkK7N2Y+cveUaTnkAU0nG9hIaIpu2x3A
-  J2s3QoHlZXRY1qUw6Qs5EQiJvvKfIqPMNC+RDvxMqaDfO0WqD02qSSLG0wY3YPh7
-  8DdEEkOAQird9FJkJFNMmOq8TllD9xN4OIhEQHQd8+PBy77PgCVDRn4OL0w1S0ow
-  l+MlYYHwriW6sAul8KsaBa2JGogqLGm566JkzG2EnhNZR519gZVp5zAmKdAVqS44
-  MHDXhF+5uff6ouIV65HhKIV3GWVuukrQIkuJvyY/MLN//8t0HwgRgWEXQFkth6tK
-  c4DnYmUCgYEA4pSK+gCaDKvF2tYX4QH5/kckEGQ9xq2jYIjeWCyJXXtFovmMHhpH
-  4c+XCcldS2S6/WpusjQXq97Rofej/Rc1710V4ykeNgBzvn+VixKhT3xi7OoJL+IE
-  IfoigcwcJU25vrkNPFqFXNCxJjnqstehDDgoF8q1iFqDlklgj0HDKo8CgYEA1Vdk
-  LjYhGhOLVB3l+c5/BJDCMzjpm0fw39kFasfVlCusspYDo/qN4V5U8H5ZaK80yf+D
-  1kPmiY8GzzjfTgqYtWv/TxSJXX5Ozoe6Px6/KEBo/mN9frKRwyQwu4n162bRYCsw
-  ROuHZ5Q0o0xFhPJkwp/UFFC59vv0NtJgQs3GomsCgYA+QyVhh7LNUpJ/DR/os9tX
-  lYMCghk7tFFV4KaAwlRI/Ovo2fw39W7VTW8qwEvDwP1lT871Zz0t/H/MqzlD/hHT
-  Idg24QCtRDiKG5MjcU4kgoDIq5M0tj3+fDbpRgZh9dbZ4w4RDKrjE3HqmDW3SWu2
-  6OOTjh+ORZktPiKrmx2fXwKBgQC03d8f0mIj4lfn22UicK98pmEN3f0m2Unb7PhL
-  u9lVQeWqjcXOWle4rimireuM9aTyb75Mg8pJ6sjiG5wtZIxsmn+bgpSmf7O+IpGC
-  e8WiEWEx8hTtueQbpW3vQJoNlWCCgHruoyNra9loa/wwJvPHkIrTIlFWk+pKI/ba
-  C+yPuwKBgQCCXzZnFwJoK0dYK62WfuwLGd/mSeaH9oUn6jWVpSrCPUcvYjh7znHb
-  wrehA8nK1yVQW7q3jDOPulLfeXV+Qbv3QtCemgGiGCnRiG28W0KQbFwY564mNboE
-  nGNcUnCuVy46aJ1Q4xQURZp5KpAO9ZIBGgr/9YzeRkWEKZ0mdWBlJQ==
-  -----END RSA PRIVATE KEY-----
