@@ -29,11 +29,26 @@ class profile::elk::elk {
     require  => Package['git'],
   }
 
+  file { '/opt/docker-elk/docker-compose.yml':
+    ensure => file,
+    source => 'puppet:///modules/profile/docker-compose.yml',
+    require => Vcsrepo['/opt/docker-elk'],
+  }
+
+  file { '/opt/docker-elk/logstash/pipeline/logstash.conf':
+    ensure => file,
+    source => 'puppet:///modules/profile/logstash.conf',
+    require => Vcsrepo['/opt/docker-elk'],
+  }
+
   docker_compose { '/opt/docker-elk/docker-compose.yml':
     ensure  => present,
     require => [ Vcsrepo['/opt/docker-elk'], 
                  Class['docker::compose'], 
-                 Class['docker'], ],
+                 Class['docker'],
+                 File['/opt/docker-elk/docker-compose.yml'],
+                 File['/opt/docker-elk/logstash/pipeline/logstash.conf'],
+               ],
   }
 
 }
