@@ -19,6 +19,7 @@ services:
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - ./logstash/ssl:/etc/ssl
     ports:
       - "5044:5044"
     environment:
@@ -43,3 +44,4 @@ networks:
 
   elk:
     driver: bridge
+

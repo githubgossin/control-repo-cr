@@ -2,6 +2,7 @@ class profile::elk::elk {
 
   $kibana_vhost = $::facts['ec2_metadata']['public-ipv4']
   $manager_ip   = dns_a('manager.borg.trek')[0]
+  $elk_key      = lookup('profile::elk::key')
 
   package { 'git':
     ensure => present,
@@ -20,6 +21,32 @@ class profile::elk::elk {
 
   class {'docker::compose':
     ensure => present,
+  }
+
+  file { '/opt/docker-elk/logstash/ssl':
+    ensure => directory,
+    require => Vcsrepo['/opt/docker-elk'],
+  }
+
+  file {'/opt/docker-elk/logstash/ssl/ca.crt':
+    ensure => file,
+    mode   => '0644',
+    source => 'puppet:///modules/profile/certs/cacert.pem',
+    require => Vcsrepo['/opt/docker-elk'],
+  }
+
+  file {'/opt/docker-elk/logstash/ssl/server.crt':
+    ensure => file,
+    mode   => '0444',
+    source => 'puppet:///modules/profile/certs/cert.pem',
+    require => Vcsrepo['/opt/docker-elk'],
+  }
+
+  file {'/opt/docker-elk/logstash/ssl/server.p8':
+    ensure  => file,
+    mode    => '0444',
+    content => "$elk_key",
+    require => Vcsrepo['/opt/docker-elk'],
   }
 
   vcsrepo { '/opt/docker-elk':
@@ -42,13 +69,18 @@ class profile::elk::elk {
   }
 
   docker_compose { '/opt/docker-elk/docker-compose.yml':
-    ensure  => present,
-    require => [ Vcsrepo['/opt/docker-elk'], 
-                 Class['docker::compose'], 
-                 Class['docker'],
-                 File['/opt/docker-elk/docker-compose.yml'],
-                 File['/opt/docker-elk/logstash/pipeline/logstash.conf'],
-               ],
+    ensure    => present,
+    require   => [ Vcsrepo['/opt/docker-elk'], 
+                   Class['docker::compose'], 
+                   Class['docker'],
+                 ],
+    subscribe => [ File['/opt/docker-elk/docker-compose.yml'],
+                   File['/opt/docker-elk/logstash/pipeline/logstash.conf'],
+                   File['/opt/docker-elk/logstash/ssl/ca.crt'],
+                   File['/opt/docker-elk/logstash/ssl/server.crt'],
+                   File['/opt/docker-elk/logstash/ssl/server.p8'],
+                 ],
   }
 
 }
+
