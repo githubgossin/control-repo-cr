@@ -69,7 +69,7 @@ class profile::sensu::server {
 #  include '::rabbitmq::repo::apt'
   class { 'rabbitmq':
     ssl               => true,
-    ssl_port          => '5671',
+    ssl_port          => 5671,
     ssl_cacert        => '/etc/ssl/certs/borgca.crt',
     ssl_cert          => "/etc/rabbitmq/ssl/${::hostname}.cert.pem",
     ssl_key           => "/etc/rabbitmq/ssl/${::hostname}.key.pem",
@@ -110,7 +110,7 @@ class profile::sensu::server {
     rabbitmq_user            => 'sensu',
     rabbitmq_password        => "$rabbitmq_password",
     rabbitmq_host            => "$sensu_server_fqdn",
-    rabbitmq_port            => '5671',
+    rabbitmq_port            => 5671,
     rabbitmq_vhost           => '/sensu',
     rabbitmq_ssl_private_key => "/etc/sensu/ssl/${::hostname}.key.pem",
     rabbitmq_ssl_cert_chain  => "/etc/sensu/ssl/${::hostname}.cert.pem",
@@ -129,7 +129,7 @@ class profile::sensu::server {
     ensure  => present,
     type    => 'tcp',
     socket  => {host => "$graphite_server_fqdn",
-                port => '2003'},
+                port => 2003},
     mutator => 'only_check_output',
   }
 
