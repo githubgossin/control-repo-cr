@@ -68,10 +68,17 @@ openssl pkcs8 -in privkey.pem -topk8 -nocrypt -out manager.borg.trek.p8
 echo 'profile::filebeat::key: |' >>  "$old_working_dir/hieradata/common.yaml"
 sed -e 's/^/  /' manager.borg.trek.p8 >> "$old_working_dir/hieradata/common.yaml"
 
-echo "*"
-echo "*"
-echo "Please run the following command to check if you have multiple entries in Hiera:"
-echo "(if you have, remove the top one, since the new one is appended at the end)"
-echo " grep profile::sensu::rabbitmq_key: $old_working_dir/hieradata/nodes/monitor.borg.trek.yaml"
-echo " grep profile::sensu::sensu_key: $old_working_dir/hieradata/common.yaml"
-
+echo "Really ugly quick fix to Erlang module:"
+head -n 32  /etc/puppetlabs/code/environments/production/modules/erlang/manifests/repo/apt.pp > /etc/puppetlabs/code/environments/production/modules/erlang/manifests/repo/apt.pp_tmp
+mv  /etc/puppetlabs/code/environments/production/modules/erlang/manifests/repo/apt.pp_tmp /etc/puppetlabs/code/environments/production/modules/erlang/manifests/repo/apt.pp
+cat <<EOF >> /etc/puppetlabs/code/environments/production/modules/erlang/manifests/repo/apt.pp
+  apt::source { 'erlang':
+    key         => {
+                     id      => $key_signature,
+                     source  => $remote_repo_key_location,
+                   },
+    location    => $remote_repo_location,
+    repos       => $repos,
+  }
+}
+EOF

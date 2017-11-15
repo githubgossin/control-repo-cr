@@ -31,8 +31,13 @@ class profile::elk::filebeat {
 
       },
     },
-    manage_repo => true,
+    manage_repo    => true,
     package_ensure => latest,
+    subscribe      => [ File['/etc/ssl/certs/ca.crt'],
+                        File['/etc/ssl/certs/client.crt'],
+                        File['/etc/ssl/private/client.p8'],
+                      ],
+ 
   }
 
   filebeat::prospector { 'syslogs':
