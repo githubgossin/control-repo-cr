@@ -74,11 +74,11 @@ mv  /etc/puppetlabs/code/environments/production/modules/erlang/manifests/repo/a
 cat <<EOF >> /etc/puppetlabs/code/environments/production/modules/erlang/manifests/repo/apt.pp
   apt::source { 'erlang':
     key         => {
-                     id      => $key_signature,
-                     source  => $remote_repo_key_location,
+                     id      => \$key_signature,
+                     source  => \$remote_repo_key_location,
                    },
-    location    => $remote_repo_location,
-    repos       => $repos,
+    location    => \$remote_repo_location,
+    repos       => \$repos,
   }
 }
 EOF
