@@ -1,0 +1,5 @@
+docker-compose install can feile, resulteter i 0-byte fil i /usr/local/bin som ikke fanges opp av puppet
+
+bash new_... scriptet kan feile, kan gjÃres pÃ¥ nytt antageligvis
+
+nginx link til graphite funker ikke, kjÃrer graphite?
