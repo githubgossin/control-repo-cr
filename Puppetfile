@@ -1,4 +1,4 @@
-forge "http://forge.puppetlabs.com"
+forge "http://forge.puppet.com"
 
 mod 'puppetlabs/concat'
 mod 'puppetlabs/stdlib'
