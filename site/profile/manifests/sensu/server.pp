@@ -24,6 +24,7 @@ class profile::sensu::server {
 # Sensu dependency redis:
 #  class { 'redis': }
 # HACK: temp fix for 18.04
+# https://github.com/arioch/puppet-redis/issues/225
   file { '/etc/systemd/system/redis-server.service.d/limit.conf':
     ensure => absent,
   }
