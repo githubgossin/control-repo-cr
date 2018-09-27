@@ -22,7 +22,15 @@ class profile::sensu::server {
   }
 
 # Sensu dependency redis:
-  class { 'redis': }
+#  class { 'redis': }
+# HACK: temp fix for 18.04
+  file { '/etc/systemd/system/redis-server.service.d/limit.conf':
+    ensure => absent,
+  }
+  class { 'redis':
+    ulimit    => false,
+    subscribe => File['/etc/systemd/system/redis-server.service.d/limit.conf'],
+  }
 
   file {'/etc/ssl/certs/borgca.crt':
     ensure => file,
