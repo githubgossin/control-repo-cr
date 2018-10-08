@@ -11,8 +11,8 @@ class profile::sensu::server {
   $sensu_dependency  = ['ruby-json', 'ruby', 'g++', 'make']
 
 # Rabbitmq dependencies
-  include 'erlang'
-  package { ['erlang-base','socat']:
+#  include 'erlang'
+  package { ['erlang-nox','socat']:
     ensure => 'latest',
   }
 
