@@ -7,6 +7,7 @@ class profile::sensu::server {
   $sensu_key                    = lookup('profile::sensu::sensu_key')
 
   $sensu_server_fqdn = "${::fqdn}"
+  $sensu_server_public_ip = "${facts['ec2_metadata']['public-ipv4']}"
   $graphite_server_fqdn = 'trends.borg.trek'
   $sensu_dependency  = ['ruby-json', 'ruby', 'g++', 'make']
 
@@ -168,6 +169,10 @@ class profile::sensu::server {
   }
 
   nginx::resource::server { "$sensu_server_fqdn":
+    listen_port => 80,
+    proxy       => 'http://localhost:3000',
+  }
+  nginx::resource::server { "$sensu_server_public_ip":
     listen_port => 80,
     proxy       => 'http://localhost:3000',
   }

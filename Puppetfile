@@ -24,6 +24,8 @@ mod 'puppetlabs/git'
 mod 'gentoo/portage'
 mod 'saz/timezone'
 mod 'ajjahn-dns'
+  :git    => 'https://github.com/ajjahn/puppet-dns',
+  :commit => '57946eb'
 mod 'puppet-filemapper'
 mod 'puppet-boolean'
 mod 'camptocamp-kmod'
