@@ -47,9 +47,9 @@ mod 'camptocamp-systemd'
 mod 'puppet/staging'
 mod 'yelp/uchiwa'
 mod 'puppetlabs/apt'
-mod 'garethr-erlang',
-  :git    => 'https://github.com/garethr/garethr-erlang',
-  :commit => '23fb75b'
+#mod 'garethr-erlang',
+#  :git    => 'https://github.com/garethr/garethr-erlang',
+#  :commit => '23fb75b'
 mod 'arioch/redis'
 mod 'herculesteam-augeasproviders_sysctl'
 mod 'herculesteam-augeasproviders_core'
