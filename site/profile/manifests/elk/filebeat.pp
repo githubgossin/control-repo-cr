@@ -24,7 +24,7 @@ class profile::elk::filebeat {
   class { 'filebeat':
     outputs => {
       'logstash' => {
-        'hosts'                       => [ "${logstash_server}:5000" ],
+        'hosts'                       => [ "${logstash_server}:5044" ],
         'ssl.certificate_authorities' => [ '/etc/ssl/certs/ca.crt' ],
         'ssl.certificate'             => '/etc/ssl/certs/client.crt',
         'ssl.key'                     => '/etc/ssl/private/client.p8',
