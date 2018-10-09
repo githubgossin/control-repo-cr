@@ -58,7 +58,10 @@ mod 'herculesteam-augeasproviders_core'
 mod 'stahnma/epel'
 mod 'puppetlabs-mysql'
 mod 'puppetlabs-translate'
-mod 'dwerder/graphite'
+#mod 'dwerder/graphite'
+mod 'squarit/graphite',
+  :git    => 'https://github.com/squarit/puppet-graphite',
+  :commit => '06a80507f882dc9eba365b58f00e42440ba63e3d'
 mod 'puppet/grafana'
 mod 'puppetlabs-docker', '2.0.0'
 mod 'devsec-suricata'
