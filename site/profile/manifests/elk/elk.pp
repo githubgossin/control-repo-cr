@@ -14,12 +14,12 @@ class profile::elk::elk {
     proxy       => 'http://localhost:5601',
   }
 
-#  class { 'docker':
-#    dns        => "${manager_ip}",
-#    fixed_cidr => '172.17.0.0/16',
-#  }
+  class { 'docker':
+    dns        => "${manager_ip}",
+    fixed_cidr => '172.17.0.0/16',
+  }
 
-  include 'docker'
+#  include 'docker'
   class {'docker::compose':
     ensure => present,
   }
