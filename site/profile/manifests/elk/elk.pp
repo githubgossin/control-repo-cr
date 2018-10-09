@@ -14,11 +14,12 @@ class profile::elk::elk {
     proxy       => 'http://localhost:5601',
   }
 
-  class { 'docker':
-    dns        => "${manager_ip}",
-    fixed_cidr => '172.17.0.0/16',
-  }
+#  class { 'docker':
+#    dns        => "${manager_ip}",
+#    fixed_cidr => '172.17.0.0/16',
+#  }
 
+  include 'docker'
   class {'docker::compose':
     ensure => present,
   }
@@ -56,17 +57,17 @@ class profile::elk::elk {
     require  => Package['git'],
   }
 
-  file { '/opt/docker-elk/docker-compose.yml':
-    ensure => file,
-    source => 'puppet:///modules/profile/docker-compose.yml',
-    require => Vcsrepo['/opt/docker-elk'],
-  }
+#  file { '/opt/docker-elk/docker-compose.yml':
+#    ensure => file,
+#    source => 'puppet:///modules/profile/docker-compose.yml',
+#    require => Vcsrepo['/opt/docker-elk'],
+#  }
 
-  file { '/opt/docker-elk/logstash/pipeline/logstash.conf':
-    ensure => file,
-    source => 'puppet:///modules/profile/logstash.conf',
-    require => Vcsrepo['/opt/docker-elk'],
-  }
+#  file { '/opt/docker-elk/logstash/pipeline/logstash.conf':
+#    ensure => file,
+#    source => 'puppet:///modules/profile/logstash.conf',
+#    require => Vcsrepo['/opt/docker-elk'],
+#  }
 
   docker_compose { '/opt/docker-elk/docker-compose.yml':
     ensure    => present,
@@ -74,8 +75,9 @@ class profile::elk::elk {
                    Class['docker::compose'], 
                    Class['docker'],
                  ],
-    subscribe => [ File['/opt/docker-elk/docker-compose.yml'],
-                   File['/opt/docker-elk/logstash/pipeline/logstash.conf'],
+    subscribe => [
+#                   File['/opt/docker-elk/docker-compose.yml'],
+#                   File['/opt/docker-elk/logstash/pipeline/logstash.conf'],
                    File['/opt/docker-elk/logstash/ssl/ca.crt'],
                    File['/opt/docker-elk/logstash/ssl/server.crt'],
                    File['/opt/docker-elk/logstash/ssl/server.p8'],
