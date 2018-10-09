@@ -7,6 +7,7 @@ class profile::graphite::grafana {
   $db_name = 'grafana'
   $graphite_server_fqdn = 'trends.borg.trek'
   $grafana_server_fqdn = 'grafana.borg.trek'
+  $grafana_server_public_ip = "${facts['ec2_metadata']['public-ipv4']}"
 
   $config = {
     app_mode => 'production',
@@ -61,6 +62,10 @@ class profile::graphite::grafana {
   }
 
   nginx::resource::server { $grafana_server_fqdn:
+    listen_port => 80,
+    proxy       => 'http://localhost:3000',
+  }
+  nginx::resource::server { $grafana_server_public_ip:
     listen_port => 80,
     proxy       => 'http://localhost:3000',
   }
