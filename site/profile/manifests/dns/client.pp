@@ -6,4 +6,7 @@ class profile::dns::client {
     data => $::ipaddress,
   }
 
+# ugly hack
+  exec { '/usr/sbin/netplan apply': }
+
 }
